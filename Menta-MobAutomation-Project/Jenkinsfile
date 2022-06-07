@@ -8,4 +8,4 @@ pipeline {
                     sh "mvn clean install -DjenkinsBrowser=${params.browser} -Dcucumber.options=\"--tags ${params.tagName}\""
                 }
             }
-            
+      	}    
