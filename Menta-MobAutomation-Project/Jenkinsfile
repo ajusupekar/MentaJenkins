@@ -1,6 +1,7 @@
 pipeline {
         agent any
-        
+        stages
+        {
             stage('Run functional test cases') 
             {
                 steps 
@@ -9,3 +10,4 @@ pipeline {
                 }
             }
       	}    
+      }
