@@ -6,7 +6,7 @@ pipeline {
             {
                 steps 
                 {              
-                   "test verify -DjenkinsBrowser=${params.browser} -Dcucumber.options=\"--tags ${params.tagName}\""
+                   test verify -DjenkinsBrowser=${params.browser} -Dcucumber.options=\"--tags ${params.tagName}\"
                 }
             }
       	}    
