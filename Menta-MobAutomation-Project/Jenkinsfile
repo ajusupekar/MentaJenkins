@@ -6,7 +6,7 @@ pipeline {
             {
                 steps 
                 {              
-                    bat "mvn clean install -DjenkinsBrowser=${params.browser} -Dcucumber.options=\"--tags ${params.tagName}\""
+                    bat "test verify -DjenkinsBrowser=${params.browser} -Dcucumber.options=\"--tags ${params.tagName}\""
                 }
             }
       	}    
