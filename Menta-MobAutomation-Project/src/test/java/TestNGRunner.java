@@ -13,7 +13,7 @@ public class TestNGRunner {
 				tags = {""},
 					plugin = {"html:target/site/cucumber-pretty","rerun:target/rerun.txt", 
 					"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/Extentreport.html",
-					},
+					}, 
 			monochrome = true)
 	public class TestNGAppRunner extends AbstractTestNGCucumberTests
 	{
