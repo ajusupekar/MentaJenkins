@@ -104,7 +104,7 @@ public String launchApp(String appVersion) throws Exception {
 	}
 	
 
-public String launchAppUsingDeviceId(String appVersion , String deviceId) throws Exception {
+public String launchAppUsingDeviceId(String device) throws Exception {
 	try {
 		// Writing logs in log file
 		LogCapture.info("Application setup started............");
@@ -114,7 +114,7 @@ public String launchAppUsingDeviceId(String appVersion , String deviceId) throws
 			// for android platform
 			Constants.AndroidDC = new DesiredCapabilities();				
 			//Constants.AndroidDC.setCapability(MobileCapabilityType.DEVICE_NAME,Constants.CONFIG.getProperty("deviceName"));				
-			Constants.AndroidDC.setCapability(MobileCapabilityType.UDID, deviceId);
+			Constants.AndroidDC.setCapability(MobileCapabilityType.UDID, device);
 			Constants.AndroidDC.setCapability(MobileCapabilityType.PLATFORM_VERSION,Constants.CONFIG.getProperty("platformVersion"));
 			Constants.AndroidDC.setCapability("skipUnlock", "true");
 			Constants.AndroidDC.setCapability("appPackage", Constants.CONFIG.getProperty("appPackage"));
