@@ -47,21 +47,22 @@ public class ANDROIDMentaAppStepDefinition
 		if(Constants.CONFIG.getProperty("isJenkins").equals("true"))
 		{
 			Thread.sleep(10000);		
-			//LogCapture.info(browser + " Application is launching....");
-	        String vBrowserName = Constants.CONFIG.getProperty("browser");
-	        System.out.println(vBrowserName);
+	        String vDeviceID = Constants.CONFIG.getProperty("device");
+	        LogCapture.info("Menta Application is launching on  device"+vDeviceID+"....");
+	        //System.out.println(vBrowserName);
 	        
 	        try {
 	            if (!Constants.JenkinsBrowser.isEmpty() || !Constants.JenkinsBrowser.equals("")) {
-	                vBrowserName = Constants.JenkinsBrowser;
-	                LogCapture.info("Device ID is :" + vBrowserName);
+	            	vDeviceID = Constants.JenkinsBrowser;
+	                LogCapture.info("Device ID is :" + vDeviceID);
 	            }
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-	        Assert.assertEquals(Constants.KEYWORD_PASS, Constants.key.launchAppUsingDeviceId(vBrowserName));  
-	        LogCapture.info("Device ID is :" + vBrowserName);		   
-	        LogCapture.info("Menta Application installed and launched successfully......!!!!");
+	        
+	        Assert.assertEquals(Constants.KEYWORD_PASS, Constants.key.launchAppUsingDeviceId(vDeviceID));  
+	        LogCapture.info("Device ID is :" + vDeviceID);		   
+			LogCapture.info("Menta Application installed and launched successfully......!!!!");
 		}
 		else if(Constants.CONFIG.getProperty("isBrowserstack").equals("true"))
 		{
