@@ -13,7 +13,7 @@ pipeline {
                 steps {
                     cucumber buildStatus:"SUCCESS",
                             fileIncludePattern:"**/cucumber.json",
-                            jsonReportDirectory:'target'
+                            jsonReportDirectory:'Menta-MobAutomation-Project/target'
                 }
             }
   }
