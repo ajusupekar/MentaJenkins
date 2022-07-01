@@ -20,7 +20,7 @@ pipeline {
 				steps {
 						emailext body: 'testEmail',
 						subject: "Automation Report",
-                        mimeType: 'text/html',to: "ajinkya.supekar@bnt-soft.com"
+                        mimeType: 'text/html',to: "ajusupekar91@gmail.com"
 
 					  }
             }
