@@ -11,7 +11,8 @@ public class TestNGRunner {
 			strict = false,
 			dryRun = false,
 				tags = {"@Menta_1"},
-					plugin = {"html:target/site/cucumber-pretty","rerun:target/rerun.txt", 
+					plugin = {"html:target/site/cucumber-pretty", "json:target/cucumber-reports/cucumber.json",
+							"html:target/site/cucumber-pretty","rerun:target/rerun.txt", 
 					"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/Extentreport.html",
 					}, 
 			monochrome = true)
