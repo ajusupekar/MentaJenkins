@@ -48,7 +48,7 @@ public class ANDROIDMentaAppStepDefinition
 		{
 			Thread.sleep(10000);		
 	        String vDeviceID = Constants.CONFIG.getProperty("device");
-	        LogCapture.info("Menta Application is launching on  device"+vDeviceID+"....");
+	        LogCapture.info("Menta Application is launching on  device "+vDeviceID+"....");
 	        //System.out.println(vBrowserName);
 	        
 	        try {
