@@ -19,33 +19,56 @@ import io.appium.java_client.android.nativekey.PressesKey;
 public class ANDROIDMentaAppStepDefinition 
 {
 	
-	@Given("^android menta app is installed on the device and launched successfully\"([^\"]*)\"$")
-	public void android_menta_app_is_installed_on_the_device_and_launched_successfully(String device) throws Throwable 
-	{
-		LogCapture.info(device + " Application is launching....");
-        String vBrowserName = Constants.CONFIG.getProperty("device");
-        System.out.println(vBrowserName);
-        
-        try {
-            if (!Constants.JenkinsBrowser.isEmpty() || !Constants.JenkinsBrowser.equals("")) {
-                vBrowserName = Constants.JenkinsBrowser;
-                LogCapture.info("Device ID is :" + vBrowserName);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        Assert.assertEquals(Constants.KEYWORD_PASS, Constants.key.launchAppUsingDeviceId(vBrowserName));  
-        LogCapture.info("Device ID is :" + vBrowserName);		   
-		LogCapture.info("Menta Application installed and launched successfully......!!!!");
-	}
+//	@Given("^android menta app is installed on the device and launched successfully\"([^\"]*)\"$")
+//	public void android_menta_app_is_installed_on_the_device_and_launched_successfully(String device) throws Throwable 
+//	{
+//		LogCapture.info(device + " Application is launching....");
+//        String vBrowserName = Constants.CONFIG.getProperty("device");
+//        System.out.println(vBrowserName);
+//        
+//        try {
+//            if (!Constants.JenkinsBrowser.isEmpty() || !Constants.JenkinsBrowser.equals("")) {
+//                vBrowserName = Constants.JenkinsBrowser;
+//                LogCapture.info("Device ID is :" + vBrowserName);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        
+//        Assert.assertEquals(Constants.KEYWORD_PASS, Constants.key.launchAppUsingDeviceId(vBrowserName));  
+//        LogCapture.info("Device ID is :" + vBrowserName);		   
+//		LogCapture.info("Menta Application installed and launched successfully......!!!!");
+//	}
 	
 	@Given("^android menta app is installed on the device and launched successfully$")
 	public void android_menta_app_is_installed_on_the_device_and_launched_successfully() throws Throwable 
 	{
-		String vObjAppVersion = Constants.CONFIG.getProperty("appVersion");
-		Constants.key.launchApp(vObjAppVersion);
-	    LogCapture.info("Menta Application installed and launched successfully......!!!!");
+		
+		if(Constants.CONFIG.getProperty("isJenkins").equals("true"))
+		{
+			Thread.sleep(10000);		
+			//LogCapture.info(browser + " Application is launching....");
+	        String vBrowserName = Constants.CONFIG.getProperty("browser");
+	        System.out.println(vBrowserName);
+	        
+	        try {
+	            if (!Constants.JenkinsBrowser.isEmpty() || !Constants.JenkinsBrowser.equals("")) {
+	                vBrowserName = Constants.JenkinsBrowser;
+	                LogCapture.info("Device ID is :" + vBrowserName);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        Assert.assertEquals(Constants.KEYWORD_PASS, Constants.key.launchAppUsingDeviceId(vBrowserName));  
+	        LogCapture.info("Device ID is :" + vBrowserName);		   
+	        LogCapture.info("Menta Application installed and launched successfully......!!!!");
+		}
+		else if(Constants.CONFIG.getProperty("isBrowserstack").equals("true"))
+		{
+			Thread.sleep(10000);
+			Assert.assertEquals(Constants.KEYWORD_PASS,Constants.key.launchAppOnBrowserStack());
+			LogCapture.info("Application installed and launched successfully......!!!!");
+		}    
 	}
 	
 	@When("^android user clink on the Sign in button$")

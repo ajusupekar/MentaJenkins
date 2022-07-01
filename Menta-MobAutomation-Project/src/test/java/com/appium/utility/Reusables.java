@@ -103,9 +103,69 @@ public String launchApp(String appVersion) throws Exception {
 
 	}
 	
+	
+	public String launchAppOnBrowserStack() throws Exception 
+	{
+		String username = Constants.CONFIG.getProperty("BS_Username");
+		String accesskey = Constants.CONFIG.getProperty("BS_AccessToken");
+		try 
+		{
+			// Writing logs in log file
+			LogCapture.info("Application setup started on browser stack............");   
+			SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			String DateTime = formatDateTime.format(new Date());
+			SimpleDateFormat formatDayMonth = new SimpleDateFormat("dd MMMM");
+			String DayMonth = formatDayMonth.format(new Date());
+			SimpleDateFormat formatTimeStamp = new SimpleDateFormat("hh:mm:ss");
+			String TimeStamp = formatTimeStamp.format(new Date());
+			// Checking platform for setting up desired capabilities
+			if (Constants.CONFIG.getProperty("platformName").equalsIgnoreCase("Android")) {
 
-public String launchAppUsingDeviceId(String device) throws Exception {
-	try {
+			// Reading properties file and setting up desired capabilities for iOS platform
+			String AndroidDeviceName = Constants.CONFIG.getProperty("BS_AndroidDevice");
+			String AndroidDeviceVersion = Constants.CONFIG.getProperty("BS_AndroidPlatformVersion");
+
+			LogCapture.info("Opening Menta  Application on "+Constants.CONFIG.getProperty("platformName")+" Device "+AndroidDeviceName+" Version "+AndroidDeviceVersion+" ............");
+			Constants.AndroidDC = new DesiredCapabilities();
+
+			Constants.AndroidDC.setCapability("device", AndroidDeviceName);
+			Constants.AndroidDC.setCapability("os_version",AndroidDeviceVersion);
+			Constants.AndroidDC.setCapability("project", "Menta Android");
+			//Constants.androidDc.setCapability("build", "Android - "+day);
+			//Constants.androidDc.setCapability("name", date + " - "+ Constants.TagNames);
+			// Constants.IOSDC.setCapability("browserstack.debug", "true");
+			//Constants.androidDc.setCapability("build", "Android - "+DayMonth);
+			//Constants.androidDc.setCapability("name", TimeStamp + " - "+ Constants.TagNames);
+			Constants.AndroidDC.setCapability("build", DateTime);
+			Constants.AndroidDC.setCapability("name", "Menta Android");
+			Constants.AndroidDC.setCapability("platformName", Constants.CONFIG.getProperty("platformName"));
+			Constants.AndroidDC.setCapability("unicodeKeyboard", true);
+			Constants.AndroidDC.setCapability("noReset", true);
+
+			// Browserstack app path
+			LogCapture.info("Installing Menta Application............");
+			
+			Constants.AndroidDC.setCapability(MobileCapabilityType.APP,"bs://" + Constants.CONFIG.getProperty("BS_AndroidMentaAppVersion"));
+			
+			Constants.driver = new AndroidDriver<MobileElement>(
+					new URL("https://" + username + ":" + accesskey + "@hub-cloud.browserstack.com/wd/hub"),
+					Constants.AndroidDC);
+			// Webdriver wait implementation
+			Constants.waitInSeconds = Integer.parseInt(Constants.CONFIG.getProperty("waitInSeconds"));
+			Constants.wait = new WebDriverWait(Constants.driver, Constants.waitInSeconds);
+			takeSnapShot();
+		}
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+		LogCapture.info(
+				"Installation or launching app process failed...Please check provided configuration details.........!!!!");
+		return Constants.KEYWORD_FAIL;
+	}
+	return Constants.KEYWORD_PASS;
+}
+
+	public String launchAppUsingDeviceId(String device) throws Exception {
+		try {
 		// Writing logs in log file
 		LogCapture.info("Application setup started............");
 		// Checking platform for setting up desired capabilities

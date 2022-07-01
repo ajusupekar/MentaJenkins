@@ -1,19 +1,19 @@
 Feature: Menta Login Screen
 
-  Background: 
+  Background:
+  	Given android menta app is installed on the device and launched successfully
+    When android user clink on the Sign in button
+    Then android user should navigate to menta login screen 
 
   @Menta_1 @Menta_Sanity
   Scenario Outline: To verify that when user performs login with valid credential then user navigates to menta dashboard screen.
-    Given android menta app is installed on the device and launched successfully"<device>"
-    When android user clink on the Sign in button
-    Then android user should navigate to menta login screen
     When android user provides menta Username "<emailAddress>" and Password "<password>"
     And android user click on the menta login button
     Then android app should load the menta dashboard screen
 
     Examples: 
-      | device | emailAddress | password   |
-      | device | MentaEmail1  | MentaPass1 |
+      | emailAddress | password   |
+      | MentaEmail1  | MentaPass1 |
 
   @Menta_2 @CA_1 @Menta_Sanity
   Scenario Outline: To verify that user should be able to ADD CASH into Menta Checking Account using new card.
