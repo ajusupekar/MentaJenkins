@@ -51,14 +51,14 @@ public class ANDROIDMentaAppStepDefinition
 	        LogCapture.info("Menta Application is launching on  device "+vDeviceID+"....");
 	        //System.out.println(vBrowserName);
 	        
-	        try {
-	            if (!Constants.JenkinsBrowser.isEmpty() || !Constants.JenkinsBrowser.equals("")) {
-	            	vDeviceID = Constants.JenkinsBrowser;
-	                LogCapture.info("Device ID is :" + vDeviceID);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+//	        try {
+//	            if (!Constants.JenkinsBrowser.isEmpty() || !Constants.JenkinsBrowser.equals("")) {
+//	            	vDeviceID = Constants.JenkinsBrowser;
+//	                LogCapture.info("Device ID is :" + vDeviceID);
+//	            }
+//	        } catch (Exception e) {
+//	            e.printStackTrace();
+//	        }
 	        
 	        Assert.assertEquals(Constants.KEYWORD_PASS, Constants.key.launchAppUsingDeviceId(vDeviceID));  
 	        LogCapture.info("Device ID is :" + vDeviceID);		   
